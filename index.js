@@ -1,102 +1,96 @@
-//Variáveis:
+//Notas dos alunos
 
-//Criação de variáveis: const nome da variável = 'valor da variável', const diz que tal variável não aceitará nenhum outro valor além do dado para el, será constante.
-
-const nome = 'Paulo Bootcamp'
-
-//console.log exibe uma mensagem ao rodarmos o terminal. console.log(mensagem desejada)
-
-//console.log(nome)
-
-
-//Variáveis string:
-
-//Variáveis string são variáveis de tipo texto.
-//Sua sintaxe é: "texto", 'texto' ou `texto`.
-
-//As strings com ` são chamadas de strig templates e com elas temos a possibilidade de além de adicionar um texto na variavel também podemos chamar outra variavel para a template pela sintaxe: `texto2 ${texto1}`
-
-//Variáveis number
-
-//Variáveis number são variáveis de tipo numero.
-//Sua sintaxe é identica a string, porém sem nenhum tipo de aspas no conteudo da variavel.É possivel realizar operações matemáticas por variáveis de tipo number, pois operações não passam de números.
-//const notaAluno02 = numero
-
-
-alunosDaTurmaA = [
+classA = [
 
     {
-        nome: 'Paulo',
-        nota: 10
+        name: 'Paulo',
+        grade: 10
     },
 
     {
-        nome: 'Diego',
-        nota: 9.8
+        name: 'Diego',
+        grade: 9.8
     },
 
     {
-        nome: 'Mayk',
-        nota: 2
+        name: 'Mayk',
+        grade: 2
     },
 
     {
-        nome: 'Marina',
-        nota: 9.2
+        name: 'Marina',
+        grade: 9.2
     }
 ]
 
-alunosDaTurmaB = [
+classB = [
 
     {
-    nome: 'Cleiton',
-    nota: 7
+    name: 'Cleiton',
+    grade: 7
     },
 
     {
-        nome: 'Ana',
-        nota: 4
+        name: 'Ana',
+        grade: 4
     },
 
     {
-        nome: 'Thiago',
-        nota: 2.5
+        name: 'Thiago',
+        grade: 2.5
     },
 
     {
-        nome: 'Afonso',
-        nota: 2.5
+        name: 'Afonso',
+        grade: 2.5
     }
 ]
 
-//Funções são uma ação que é dispara assim que chamarmos ela. Muito utilizada para que não seja preciso repetir códigos. É escrita da segunte forma: function nome da função(parámetros da função){ação}.
-//Métodos: Funções que estão atreladas a um objeto, método é uma função atrelada a um objeto. objeto.função(método)
-
-//Estrutura de repetição serve para repetir uma ação em determinadas vezes. for(let i=0; num de repet.(i< ou >); i++){ação}
-
-function calculaMedia(alunos) {
-    let soma = 0
-    for (let i = 0; i < alunos.length; i++) {
-        soma = soma + alunos[i].nota
+function calculateAverage(students) {
+    let sum = 0
+    for (let i = 0; i < students.length; i++) {
+        sum = sum + students[i].grade
     }
 
-    const media = soma / alunos.length
-    return media
+    const average = sum / students.length
+
+    return average
 }
 
-const mediaA = calculaMedia(alunosDaTurmaA)
-
-const mediaB = calculaMedia(alunosDaTurmaB)
-
-function enviaMensagem(media, turma) {
-    if (media > 5) {
-        console.log(`A média da turma ${turma} foi de ${media} . Parabéns!!`)
+function sendMessage(average, turma) {
+    if (average > 5) {
+        console.log(`Class ${turma}, average has been ${average} . Good work!!`)
     } else {
-        console.log(`A média da turma ${turma} foi de ${media} . Estudem mais!!`)
+        console.log(`Class ${turma}, average has been ${average} . It isn't good!!`)
     }
 }
 
-enviaMensagem(mediaA, 'A')
-enviaMensagem(mediaB, 'B')
+function markAsFlunked(student) {
+    student.flunked = false
+    
+    if (student.grade < 5) {
+        student.flunked = true
+    }
+}
 
-// Variáveis criadas só funcionam em seu escopo de bloco em nos escopos filhos, nunca nos escopos pai.
+function sendFlunkedMessage(student) {
+    if (student.flunked) {
+        console.log(`The student ${student.name} is flunked!`)
+    }
+}
+
+function studentsflunkeds(students) {
+    for (let student of students) {
+        markAsFlunked(student)
+        sendFlunkedMessage(student)
+    }
+}
+
+const averageA = calculateAverage(classA)
+const averageB = calculateAverage(classB)
+
+sendMessage(averageA, 'A')
+sendMessage(averageB, 'B')
+
+studentsflunkeds(classA)
+studentsflunkeds(classB)
