@@ -46,7 +46,7 @@ function getAverageTransactionValue (){
         totValueTran = totValueTran + transaction.value
     }
 
-    transactionAvarage = totValueTran / user.transactions.length
+    const transactionAvarage = totValueTran / user.transactions.length
 
     return transactionAvarage
 }
@@ -87,6 +87,6 @@ console.table( `Your balance is : ${user.balance} $`)
 console.table( getHigherTransactionByType('credit'))
 console.table( getHigherTransactionByType('debit'))
 
-console.table(`Your transactions avarage is: ${getAverageTransactionValue()}`)
+console.table( `Your transactions avarage is: ${getAverageTransactionValue()} $`)
 
 console.table( getTransactionsCount())
